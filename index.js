@@ -12,7 +12,7 @@
 function checkStrength(password) {
   console.log(password);
 
-  const counter = 0;
+  let counter = 0;
 
   // it is at least 8 characters long
   if (password.length >= 8) {
@@ -22,7 +22,7 @@ function checkStrength(password) {
   // contains both lower & uppercase
   const upper = /[A-Z]/;
   const lower = /[a-z]/;
-  if (upper.test(password) || lower.test(password)) {
+  if (upper.test(password) && lower.test(password)) {
     counter++;
   }
 
@@ -36,6 +36,14 @@ function checkStrength(password) {
   const chars = /[!@#$%\^\&\*]/;
   if (chars.test(password)) {
     counter++;
+  }
+
+  if (counter < 2) {
+    return 'weak';
+  } else if (counter <= 3) {
+    return 'medium';
+  } else {
+    return 'strong';
   }
 
   console.log(counter);
